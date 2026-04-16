@@ -39,27 +39,27 @@ function init() {
 
     // Створюємо завантажувач
     loader = new GLTFLoader();
-	    loader.load(
+      loader.load(
         modelUrl,
         function (gltf) {
             model = gltf.scene;
             model.position.z = -10;
             scene.add(model);
 
-            // // Створюємо матеріал для моделі (якщо потрібно)
-            // const goldMaterial = new THREE.MeshStandardMaterial({
-            //     color: 0xffd700, // Золотий колір
-            //     metalness: 1,
-            //     roughness: 0.1,
-            // });
+            // Створюємо матеріал для моделі (якщо потрібно)
+            const goldMaterial = new THREE.MeshStandardMaterial({
+                color: 0xffd700, // Золотий колір
+                metalness: 1,
+                roughness: 0.1,
+            });
             
-            // // Змінюємо модель (якщо потрібно)
+            // Змінюємо модель (якщо потрібно)
             // model.traverse((child) => {
             //     if (child.isMesh) {
             //         child.material = goldMaterial;
             //         child.material.needsUpdate = true;
             //     }
-            // });
+            // })
 
             console.log("Model added to scene");
         },
