@@ -43,23 +43,31 @@ function init() {
         modelUrl,
         function (gltf) {
             model = gltf.scene;
-            model.position.z = -10;
+            model.position.z = -3;
+            model.position.y = -1;
             scene.add(model);
 
             // Створюємо матеріал для моделі (якщо потрібно)
-            const goldMaterial = new THREE.MeshStandardMaterial({
-                color: 0xffd700, // Золотий колір
-                metalness: 1,
-                roughness: 0.1,
+            const diamondMaterial = new THREE.MeshPhysicalMaterial({
+              color: 0xffffff,
+              metalness: 0,
+              roughness: 0,
+              transmission: 1,   // прозорість 
+              thickness: 1,      // товщина об’єкта
+              ior: 2.4,          // заломлення (як діамант ~2.4)
+              transparent: true,
+              opacity: 1,
+              clearcoat: 1,
+              clearcoatRoughness: 0,
             });
             
             // Змінюємо модель (якщо потрібно)
-            // model.traverse((child) => {
-            //     if (child.isMesh) {
-            //         child.material = goldMaterial;
-            //         child.material.needsUpdate = true;
-            //     }
-            // })
+            model.traverse((child) => {
+                if (child.isMesh) {
+                    child.material = diamondMaterial;
+                    child.material.needsUpdate = true;
+                }
+            })
 
             console.log("Model added to scene");
         },
@@ -101,6 +109,6 @@ function rotateModel() {
         // допустима межа градусів - від 0 до 360
         // Після 360 three.js сприйматиме 360 як 0, 361 як 1, 362 як 2 і так далі
         degrees = degrees + 0.2; 
-        model.rotation.x = THREE.MathUtils.degToRad(degrees); // тут перетворюємо градуси у радіани
+        model.rotation.y = THREE.MathUtils.degToRad(degrees); // тут перетворюємо градуси у радіани
     } 
 }

@@ -1,7 +1,10 @@
 // vite.config.js
+import { defineConfig } from 'vite'
 import basicSsl from '@vitejs/plugin-basic-ssl'
 
-export default {
+export default defineConfig({
+  base: '/lab2-ar/',
+
   plugins: [
     basicSsl({
       /** name of certification */
@@ -14,4 +17,4 @@ export default {
       certDir: '/Users/.../.devServer/cert',
     }),
   ],
-}
+})
