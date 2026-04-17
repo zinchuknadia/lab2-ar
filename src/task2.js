@@ -28,7 +28,7 @@ function init() {
     container.appendChild(renderer.domElement);
 
     const directionalLight = new THREE.DirectionalLight(0xffffff, 2); 
-    directionalLight.position.set(5, 5, 5);
+    directionalLight.position.set(0.5, 0.5, 0.5);
     scene.add(directionalLight);
 
     const ambientLight = new THREE.AmbientLight(0xffffff, 2); 
@@ -44,7 +44,8 @@ function init() {
         function (gltf) {
             model = gltf.scene;
             model.position.z = -3;
-            model.position.y = -1;
+            model.position.y += 0;
+            model.scale.set(1, 1, 1);
             scene.add(model);
 
             // Створюємо матеріал для моделі (якщо потрібно)
@@ -52,7 +53,7 @@ function init() {
               color: 0xffffff,
               metalness: 0,
               roughness: 0,
-              transmission: 1,   // прозорість 
+              transmission: 0.5,   // прозорість 
               thickness: 1,      // товщина об’єкта
               ior: 2.4,          // заломлення (як діамант ~2.4)
               transparent: true,
